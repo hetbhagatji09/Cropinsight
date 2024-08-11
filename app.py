@@ -3,12 +3,9 @@ import pandas as pd
 import numpy as np
 import pickle
 
-with open('pipeline.pkl', 'rb') as f:
-    pipeline = pickle.load(f)
-
-app= Flask(__name__)
 
 
+app=Flask(__name__)
 
 
 @app.route('/')
@@ -23,7 +20,7 @@ def predict():
     min_price = float(request.form.get('min_price'))
     max_price = float(request.form.get('max_price'))
     
-    year = int(request.form.get('year'))
+    year = request.form.get('year')
     month = int(request.form.get('month'))
     day = int(request.form.get('day'))
     
@@ -39,22 +36,26 @@ def predict():
         'Day': [day]
     }
     
-    dataframe = pd.DataFrame(data)
+    new_data_df = pd.DataFrame(data)
+
+    # Predict using the pipeline
+    with open('Artifacts/price.pkl', 'rb') as f:
+        pipeline=pickle.load(f)
+    prediction = pipeline.predict(new_data_df)
     
-    # Debug: print DataFrame
-    print("DataFrame for prediction:")
-    print(dataframe)
     
-    try:
-        print('hejkbewc ,sz')
-        # Make predictions
-        predictions = pipeline.predict(dataframe)
-        # print("Predictions:", predictions)
-    except Exception as e:
-        print("Error during prediction:", str(e))
-        return render_template('predict.html')
+
     
-    return render_template('predict.html')
+    return render_template('predict.html',prediction=prediction[0])
+    # try:
+    #     print('hejkbewc ,sz')
+    #     # Make predictions
+    #     predictions = pipeline.predict(dataframe)
+    #     # print("Predictions:", predictions)
+    # except Exception as e:
+    #     print("Error during prediction:", str(e))
+    #     return render_template('predict.html')
+    
 
 
 
