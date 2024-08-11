@@ -47,7 +47,7 @@
 <body class="flex items-center justify-center min-h-screen p-6">
     <div class="bg-white max-w-4xl w-full p-8 rounded-lg shadow-lg">
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center"><u>CropInsight</u></h1>
-        <form action="/submit" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form action="/predict" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <label for="district_name" class="font-semibold text-gray-700">District Name:</label>
             <div class="gradient-border">
                 <select id="district_name" name="district_name" class="w-full border border-gray-300 rounded-md p-2">
@@ -56,7 +56,29 @@
                     <option value="Surat">Surat</option>
                     <option value="Bhavnagar">Bhavnagar</option>
                     <option value="Rajkot">Rajkot</option>
+                    <option value="Amreli">Amreli</option>
+                    <option value="Banaskanth">Banaskanth</option>
+                    <option value="Sabarkantha">Sabarkantha</option>
+                    <option value="Dahod">Dahod</option>
+                    <option value="Jamnagar">Jamnagar</option>
+                    <option value="Mehsana">Mehsana</option>
+                    <option value="Chhota Udaipur">Chhota Udaipur</option>
+                    <option value="Patan">Patan</option>
+                    <option value="Morbi">Morbi</option>
+                    <option value="Botad">Botad</option>
+                    <option value="Gandhinagar">Gandhinagar</option>
+                    <option value="Bharuch">Bharuch</option>
+                    <option value="Anand">Anand</option>
+                    <option value="Vadodara(Baroda)">Vadodara(Baroda)</option>
+                    <option value="Porbandar">Porbandar</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Gir Somnath">Gir Somnath</option>
+                    <option value="Devbhumi Dwarka">Devbhumi Dwarka</option>
+                    <option value="Surendranagar">Surendranagar</option>
+                    <option value="Panchmahals">Panchmahals</option>
+                    <option value="Narmada">Narmada</option>
                 </select>
+                
             </div>
 
             <label for="market_name" class="font-semibold text-gray-700">Market Name:</label>
@@ -79,10 +101,10 @@
                 <input type="number" id="max_price" name="max_price" value="3130" min="0" class="w-full border border-gray-300 rounded-md p-2">
             </div>
 
-            <label for="modal_price" class="font-semibold text-gray-700">Modal Price (Rs./Quintal):</label>
+            <!-- <label for="modal_price" class="font-semibold text-gray-700">Modal Price (Rs./Quintal):</label>
             <div class="gradient-border">
                 <input type="number" id="modal_price" name="modal_price" step="0.01" value="3000.0" min="0" class="w-full border border-gray-300 rounded-md p-2">
-            </div>
+            </div> -->
 
             <label for="year" class="font-semibold text-gray-700">Year:</label>
             <div class="gradient-border">
