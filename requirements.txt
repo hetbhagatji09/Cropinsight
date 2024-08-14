@@ -6,3 +6,4 @@ Flask
 seaborn
 matplotlib
 streamlit
+scikeras

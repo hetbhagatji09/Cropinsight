@@ -1,18 +1,16 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import pandas as pd
-import numpy as np
 import pickle
 
+app = Flask(__name__)
 
-
-app=Flask(__name__)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST','GET'])
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
     district_name = request.form.get('district_name')
     market_name = request.form.get('market_name')
@@ -38,26 +36,14 @@ def predict():
     
     new_data_df = pd.DataFrame(data)
 
-    # Predict using the pipeline
-    with open('Artifacts/price.pkl', 'rb') as f:
-        pipeline=pickle.load(f)
+    # Predict using the pipeline (assuming you have a pipeline defined)
+    with open(r'C:\Users\hetbh\OneDrive\Desktop\CropInsight3\Artifacts\price.pkl', 'rb') as f:
+        pipeline = pickle.load(f)
     prediction = pipeline.predict(new_data_df)
     
-    
-
-    
-    return render_template('predict.html',prediction=prediction[0])
-    # try:
-    #     print('hejkbewc ,sz')
-    #     # Make predictions
-    #     predictions = pipeline.predict(dataframe)
-    #     # print("Predictions:", predictions)
-    # except Exception as e:
-    #     print("Error during prediction:", str(e))
-    #     return render_template('predict.html')
-    
+    return render_template('predict.html', prediction=prediction[0])
 
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1',debug=True)
+    app.run(host='127.0.0.1', debug=True)
